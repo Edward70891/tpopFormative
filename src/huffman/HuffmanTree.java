@@ -179,15 +179,12 @@ public class HuffmanTree {
 	
 	public String encodeText(String text) {
 		Map<Character, String> characterMapping = this.getEncoding();
-		String binaryString = new String("");
-		Character currentChar;
-		for (int i = 0; i < text.length(); i++) {
-			currentChar = new Character(text.charAt(i));
-			if (characterMapping.containsKey(currentChar)) {
-				binaryString = binaryString.concat(characterMapping.get(currentChar));
-			} else {
+		String binaryString = "";
+		for (Character currentChar: text.toCharArray()) {
+			if (!characterMapping.containsKey(currentChar)) {
 				throw new IllegalArgumentException();
 			}
+			binaryString = binaryString.concat(characterMapping.get(currentChar));
 		}
 		return binaryString;
 	}
