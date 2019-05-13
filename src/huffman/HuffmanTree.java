@@ -203,6 +203,7 @@ public class HuffmanTree {
 			} else if (currentChar == '1') {
 				if (!currentNodePointer.hasRight()) {
 					throw new IllegalArgumentException();
+				}
 				currentNodePointer = currentNodePointer.right;
 			}
 			if (currentNodePointer.isLeaf()) {
