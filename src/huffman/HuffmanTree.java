@@ -192,21 +192,18 @@ public class HuffmanTree {
 	public String decodeText(String text) {
 		HuffmanTree currentNodePointer = this;
 		String outString = new String("");
-		for (int i = 0; i < text.length(); i++) {
+		for (Character currentChar: text.toCharArray()) {
 			// Go right
-			if (text.charAt(i) == '0') {
-				if (currentNodePointer.hasLeft()) {
-					currentNodePointer = currentNodePointer.left;
-				} else {
+			if (currentChar == '0') {
+				if (!currentNodePointer.hasLeft()) {
 					throw new IllegalArgumentException();
 				}
+				currentNodePointer = currentNodePointer.left;
 			// Go left
-			} else if (text.charAt(i) == '1') {
-				if (currentNodePointer.hasRight()) {
-					currentNodePointer = currentNodePointer.right;
-				} else {
+			} else if (currentChar == '1') {
+				if (!currentNodePointer.hasRight()) {
 					throw new IllegalArgumentException();
-				}
+				currentNodePointer = currentNodePointer.right;
 			}
 			if (currentNodePointer.isLeaf()) {
 				outString = outString.concat(Character.toString(currentNodePointer.symbol));
